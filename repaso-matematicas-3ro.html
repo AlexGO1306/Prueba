@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repaso de Matemáticas – 3.º de primaria</title>
+<style>
+:root{box-sizing:border-box;--bg:#d6f1ff;--card:#fff;--tx:#2b2b4a;--pr:#7c4dff;--ok:#1fb86a;--bad:#ff6b57;--soft:#fff3c4;--line:#ffc94d;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 8% 12%,#fff29a 0,transparent 22%),radial-gradient(circle at 92% 88%,#ffbfe0 0,transparent 24%),radial-gradient(circle at 90% 10%,#c9f7d4 0,transparent 20%),var(--bg);color:var(--tx);font-family:"Comic Sans MS","Trebuchet MS",system-ui,sans-serif;font-size:17px}
+#app{height:100%;display:flex;flex-direction:column}
+button{font:inherit;cursor:pointer;border:0;border-radius:16px;padding:10px 16px;background:var(--pr);color:#fff;font-weight:700;box-shadow:0 4px 0 #0003}button:active{transform:translateY(3px);box-shadow:none}.opt:hover{background:var(--soft)}
+button.alt{background:var(--soft);color:var(--tx);border:2px solid var(--line)}
+.center{margin:12px auto;text-align:center;max-width:760px;padding:18px;overflow:auto;max-height:calc(100% - 24px);background:var(--card);border-radius:28px;border:4px solid var(--pr);box-shadow:0 6px 0 var(--pr)}
+h1{font-size:2em;margin:.2em 0;color:var(--pr)}h2{margin:.2em 0}
+input{font:inherit;padding:12px;border-radius:12px;border:3px solid var(--pr);width:min(320px,90%);text-align:center;background:var(--card);color:var(--tx)}
+.big{font-size:4rem}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.day{border-radius:18px;padding:12px;border:3px solid #29b6f6;background:#e1f5fe;text-align:left}.day:nth-child(2){border-color:#ff8a65;background:#fff0ea}
+.tp{display:flex;align-items:center;gap:8px;width:100%;margin:6px 0;text-align:left;justify-content:space-between}
+.tp small{opacity:.85;font-weight:400}
+header{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;background:linear-gradient(90deg,var(--pr),#ff6bb5);color:#fff;gap:8px}
+header b{font-size:1.1em}header button{background:#fff3;padding:6px 12px}
+.split{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;min-height:0}
+.pan{background:var(--card);border-radius:20px;padding:14px;overflow:auto;border:2px solid var(--line);min-height:0}
+.pan.l{background:var(--soft)}
+.box{background:var(--card);border-radius:14px;padding:8px 12px;margin:8px 0;border:2px dashed var(--pr)}
+.dots{display:flex;gap:5px;margin-bottom:6px}.dots i{flex:1;height:10px;border-radius:6px;background:var(--line)}.dots i.on{background:var(--pr)}.dots i.st{background:var(--ok)}
+.tag{display:inline-block;background:var(--pr);color:#fff;border-radius:10px;padding:2px 10px;font-size:.85em}
+.q{font-size:1.2em;font-weight:700;margin:8px 0}
+.opt{display:block;width:100%;margin:7px 0;background:var(--card);color:var(--tx);border:3px solid var(--pr);font-size:1.1em}
+.opt.ok{background:var(--ok);color:#fff;border-color:var(--ok)}.opt.no{background:var(--bad);color:#fff;border-color:var(--bad);opacity:.7}
+.fb{margin-top:8px;padding:10px;border-radius:12px;background:var(--soft);border-left:6px solid var(--bad)}.fb.g{border-color:var(--ok)}
+.vis{text-align:center}.vis svg{max-width:100%;height:auto}
+.r{display:flex;align-items:center;gap:6px;margin:3px 0;font-size:1.05em}.r span{width:86px}.r i{display:block;height:20px;background:var(--pr);border-radius:6px}
+.big2{font-size:1.5em;letter-spacing:2px}
+@media (max-width:760px){body{overflow:auto}#app{height:auto;min-height:100%}.split{grid-template-columns:1fr}.days{grid-template-columns:1fr}}
+</style></head><body><div id="app"></div>
+<script>
+const clk=(h,m)=>{const p=(a,L)=>[100+L*Math.sin(a*Math.PI/180),100-L*Math.cos(a*Math.PI/180)];let s='<svg viewBox="0 0 200 200" width="170"><circle cx="100" cy="100" r="92" fill="#fff" stroke="#5b4bdb" stroke-width="5"/>';
+for(let n=1;n<=12;n++){const[x,y]=p(n*30,75);s+=`<text x="${x}" y="${y+6}" text-anchor="middle" font-size="18" font-weight="700" fill="#222">${n}</text>`}
+const[hx,hy]=p((h%12)*30+m*.5,48),[mx,my]=p(m*6,72);
+return s+`<line x1="100" y1="100" x2="${hx}" y2="${hy}" stroke="#d9534f" stroke-width="8" stroke-linecap="round"/><line x1="100" y1="100" x2="${mx}" y2="${my}" stroke="#2b6fdb" stroke-width="5" stroke-linecap="round"/><circle cx="100" cy="100" r="6" fill="#222"/></svg>`};
+const ruler=()=>{let s='<svg viewBox="0 0 340 70" width="340"><rect x="5" y="5" width="330" height="60" rx="6" fill="#ffe08a" stroke="#c9a227" stroke-width="2"/>';for(let i=0;i<=10;i++){s+=`<line x1="${20+i*30}" y1="5" x2="${20+i*30}" y2="${i%5?30:38}" stroke="#222" stroke-width="2"/><text x="${20+i*30}" y="56" text-anchor="middle" font-size="14" fill="#222">${i}</text>`}return s+'</svg>'};
+const pic=d=>d.map(x=>`<div class="r"><span>${x[0]}</span><b class="big2">${x[1].repeat(x[2])}</b></div>`).join('')+'<small>Cada dibujo = 1 niño</small>';
+const bars=d=>d.map(x=>`<div class="r"><span>${x[0]}</span><i style="width:${x[1]*11}%"></i><b>${x[1]}</b></div>`).join('');
+const F=[['🍎 Manzana','🍎',4],['🍌 Banano','🍌',3],['🍇 Uva','🍇',5],['🍓 Fresa','🍓',2]];
+const M=[['🐶 Perro',6],['🐱 Gato',4],['🐟 Pez',2],['🐰 Conejo',3]];
+const pv=pic(F),bv=bars(M);
+const kg='Se mide con la balanza: ';
+const T=[
+{n:'Longitud: m, dm y cm',ic:'📏',min:20,ex:`<p>Medimos <b>qué tan largo</b> es algo.</p><div class="vis">${ruler()}</div><div class="box">📏 <b>centímetro (cm)</b>: cosas pequeñas, como un lápiz ✏️</div><div class="box">🖐️ <b>decímetro (dm)</b>: 1 dm = 10 cm</div><div class="box">🚪 <b>metro (m)</b>: cosas grandes, como una puerta o la cancha ⚽</div><div class="box"><b>1 dm = 10 cm</b><br><b>1 m = 10 dm = 100 cm</b></div>`,
+it:[['¿Cuántos centímetros tiene 1 metro?',['10 cm','100 cm','1000 cm'],1,'1 metro es igual a 100 centímetros. ¡Son 10 decímetros de 10 cm cada uno!'],
+['1 decímetro es igual a…',['10 cm','5 cm','100 cm'],0,'Un decímetro mide 10 cm. Mira la regla de arriba: tiene 10 rayitas grandes.'],
+['3 dm = ¿cuántos cm?',['13 cm','30 cm','300 cm'],1,'Cada dm son 10 cm. Cuenta de 10 en 10: 10, 20, 30.'],
+['200 cm = ¿cuántos metros?',['2 m','20 m','200 m'],0,'100 cm es 1 m. Entonces 200 cm son 2 m.'],
+['¿Con qué medirías mejor el largo de la cancha?',['centímetro','metro','decímetro'],1,'Para cosas muy largas usamos el metro. El centímetro es para cosas pequeñas.'],
+['Ana tiene una cinta de 2 m. ¿Cuántos cm mide?',['20 cm','200 cm','2000 cm'],1,'1 m = 100 cm. Entonces 2 m = 100 + 100 = 200 cm.'],
+['Un lápiz mide 15 cm y otro 12 cm. ¿Cuántos cm miden juntos?',['27 cm','3 cm','37 cm'],0,'Juntar es sumar: 15 + 12 = 27.'],
+['Una mesa mide 8 dm y otra 5 dm. ¿Cuántos dm más larga es la primera?',['13 dm','3 dm','5 dm'],1,'Para saber cuánto más, restamos: 8 − 5 = 3.'],
+['Pedro mide 1 m y 20 cm. ¿Cuántos cm mide?',['21 cm','1020 cm','120 cm'],2,'1 m = 100 cm. Luego sumamos 20: 100 + 20 = 120.'],
+['Una cuerda mide 50 cm. Se cortan 20 cm. ¿Cuántos cm quedan?',['70 cm','30 cm','20 cm'],1,'Cortar es restar: 50 − 20 = 30.']]},
+{n:'Masa y capacidad: kg y litro',ic:'⚖️',min:20,ex:`<div class="box">⚖️ <b>Masa</b> = qué tan pesado es algo. Se mide en <b>kilogramos (kg)</b> con la balanza.<br>Ejemplo: una sandía 🍉 pesa 3 kg.</div><div class="box">🥛 <b>Capacidad</b> = cuánto líquido cabe. Se mide en <b>litros (L)</b>.<br>Ejemplo: una botella de agua 🍼 de 1 L.</div><div class="box"><b>1 kg = 1000 gramos (g)</b><br>Medio kilo = 500 g<br><b>1 L</b> = 2 botellitas de medio litro</div><p>💡 <b>1 kg de plumas pesa lo mismo que 1 kg de piedras.</b></p>`,
+it:[['¿Qué se mide en kilogramos?',['El peso de una sandía','Lo que cabe en una jarra','El largo de una mesa'],0,'Los kilogramos miden qué tan pesado es algo (masa).'],
+['¿Qué se mide en litros?',['El peso de un perro','El agua de una jarra','El largo de una cinta'],1,'Los litros miden cuánto líquido cabe (capacidad).'],
+['1 kg = ¿cuántos gramos?',['100 g','10 g','1000 g'],2,'1 kilogramo tiene 1000 gramos.'],
+['¿Cuántas botellitas de medio litro llenan 2 L?',['2','4','8'],1,'1 L son 2 botellitas de medio litro. Entonces 2 L son 2 + 2 = 4.'],
+['¿Cuál pesa más: 1 kg de plumas o 1 kg de piedras?',['Las plumas','Las piedras','Pesan igual'],2,'Los dos pesan 1 kg. Solo cambia el tamaño, ¡las plumas ocupan más espacio!'],
+['Mamá compró 2 kg de arroz y 3 kg de frijol. ¿Cuántos kg compró?',['5 kg','1 kg','6 kg'],0,'Juntar es sumar: 2 + 3 = 5 kg.'],
+['Una jarra tiene 5 L de jugo. Se beben 2 L. ¿Cuántos L quedan?',['7 L','3 L','2 L'],1,'Beber es quitar, o sea restar: 5 − 2 = 3 L.'],
+['Una bolsa de 1 kg de azúcar. Se usan 500 g. ¿Cuántos g quedan?',['500 g','1500 g','100 g'],0,'1 kg = 1000 g. Entonces 1000 − 500 = 500 g.'],
+['Llenamos 3 botellas de 2 L cada una. ¿Cuántos L son en total?',['5 L','6 L','8 L'],1,'Son 3 grupos de 2: 2 + 2 + 2 = 6 L.'],
+['Un gato pesa 4 kg y un perro 9 kg. ¿Cuántos kg más pesa el perro?',['5 kg','13 kg','4 kg'],0,'Para saber cuánto más, restamos: 9 − 4 = 5 kg.']]},
+{n:'Lectura del reloj',ic:'🕒',min:14,ex:`<div class="vis">${clk(3,30)}</div><div class="box">🔴 <b>Horario</b> (corto): dice la <b>hora</b>.<br>🔵 <b>Minutero</b> (largo): dice los <b>minutos</b>.</div><div class="box">Cada número del minutero vale <b>5 minutos</b>:<br>en el 12 → <b>:00</b> (en punto)<br>en el 3 → <b>:15</b> (y cuarto)<br>en el 6 → <b>:30</b> (y media)<br>en el 9 → <b>:45</b> (menos cuarto)</div><p>⏱️ 1 hora = 60 minutos</p>`,
+it:[['¿Qué hora marca el reloj?',['3:00','12:15','6:15'],0,'El minutero está en el 12: son minutos 00. El horario está en el 3: son las 3:00.',clk(3,0)],
+['¿Qué hora marca el reloj?',['5:30','6:30','7:00'],1,'El minutero en el 6 es 30 minutos. El horario pasó el 6: son las 6:30.',clk(6,30)],
+['¿Qué hora marca el reloj?',['3:45','9:15','9:30'],1,'El minutero en el 3 son 15 minutos (3 × 5). El horario está en el 9: 9:15.',clk(9,15)],
+['¿Qué hora marca el reloj?',['4:15','9:04','4:45'],2,'El minutero en el 9 son 45 minutos (9 × 5). El horario está cerca del 5, pero aún es la hora 4: 4:45.',clk(4,45)],
+['¿Qué hora marca el reloj?',['11:30','6:11','12:30'],0,'El minutero en el 6 es 30 minutos. El horario aún no llega al 12: son las 11:30.',clk(11,30)],
+['La clase empieza a las 8:00 y dura 40 minutos. ¿A qué hora termina?',['8:04','8:40','9:00'],1,'Desde las 8:00 sumamos 40 minutos: 8:40.'],
+['El recreo empieza a las 10:00 y dura 30 minutos. ¿A qué hora termina?',['10:30','10:03','11:00'],0,'30 minutos es media hora. 10:00 + media hora = 10:30.'],
+['Son las 2:00. ¿Qué hora será dentro de 1 hora?',['2:01','1:00','3:00'],2,'Una hora después de las 2:00 es la 3:00.'],
+['La hora corta está en el 5 y el minutero en el 3. ¿Qué hora es?',['3:25','5:15','5:03'],1,'Minutero en el 3 son 15 minutos. Horario en el 5: son las 5:15.'],
+['¿Cuántos minutos tiene una hora?',['30','100','60'],2,'Una hora tiene 60 minutos y media hora tiene 30.']]},
+{n:'Pictogramas y gráficas',ic:'📊',min:13,ex:`<p>Un <b>pictograma</b> usa dibujos para contar. Una <b>gráfica de barras</b> usa barras.</p><div class="box">${pic([['🍎 Manzana','🍎',3],['🍌 Banano','🍌',2]])}</div><div class="box">${bars([['🍎 Manzana',3],['🍌 Banano',2]])}</div><p>👀 <b>Pasos:</b> 1) Lee el título. 2) Cuenta los dibujos o mira el número de la barra. 3) Compara: ¿más o menos? Para saber cuánto más, ¡resta!</p>`,
+it:[['¿Cuántos niños prefieren las uvas 🍇?',['4','5','3'],1,'Cuenta los 🍇 en la fila de uva: hay 5.',pv],
+['¿Qué fruta eligieron menos niños?',['Fresa','Uva','Banano'],0,'La fila más corta es la de fresa 🍓: solo 2.',pv],
+['¿Qué fruta eligieron más niños?',['Manzana','Banano','Uva'],2,'La fila más larga es la de uva 🍇: 5 niños.',pv],
+['¿Cuántos niños más eligieron manzana que fresa?',['2','6','4'],0,'Manzana 4 y fresa 2. Restamos: 4 − 2 = 2.',pv],
+['¿Cuántos niños votaron en total?',['12','14','13'],1,'Suma todo: 4 + 3 + 5 + 2 = 14.',pv],
+['¿Cuántos perros más que gatos hay?',['10','4','2'],2,'Perros 6 y gatos 4. Restamos: 6 − 4 = 2.',bv],
+['¿Cuántas mascotas hay en total?',['15','14','13'],0,'Suma: 6 + 4 + 2 + 3 = 15.',bv],
+['¿Qué mascota tiene la barra más corta?',['Pez','Conejo','Gato'],0,'La barra más corta es la del pez: 2.',bv],
+['¿Cuántos gatos y conejos hay juntos?',['7','8','6'],0,'Gatos 4 + conejos 3 = 7.',bv],
+['Si 2 niños más eligen pez, ¿cuántos peces habrá?',['2','4','6'],1,'Había 2 peces y se suman 2: 2 + 2 = 4.',bv]]},
+{n:'Sucesiones y patrones',ic:'🔢',min:13,ex:`<p>Un <b>patrón</b> es algo que se repite siguiendo una <b>regla</b>.</p><div class="box">🔴🔵🔴🔵🔴🔵 → el patrón se repite: sigue 🔴</div><div class="box">2, 4, 6, 8, ... → <b>suma 2</b> cada vez. Sigue 10.</div><div class="box">20, 18, 16, 14, ... → <b>resta 2</b> cada vez. Sigue 12.</div><p>🕵️ <b>Truco:</b> mira dos números seguidos y calcula cuánto cambió. ¡Esa es la regla!</p>`,
+it:[['2, 4, 6, 8, ___ ¿Qué número sigue?',['9','10','12'],1,'La regla es sumar 2: 8 + 2 = 10.'],
+['5, 10, 15, 20, ___ ¿Qué número sigue?',['25','30','21'],0,'La regla es sumar 5: 20 + 5 = 25.'],
+['🔴🔵🔴🔵🔴 ___ ¿Qué figura sigue?',['🔴','🔵','🟡'],1,'Se alternan rojo y azul. Después del 🔴 viene 🔵.'],
+['20, 18, 16, 14, ___ ¿Qué número sigue?',['16','13','12'],2,'La regla es restar 2: 14 − 2 = 12.'],
+['¿Cuál es la regla de 3, 6, 9, 12?',['Suma 3','Suma 2','Resta 3'],0,'De 3 a 6 hay 3 más, de 6 a 9 otros 3 más. Suma 3.'],
+['Ahorro $2 el lunes, $4 el martes, $6 el miércoles. ¿Cuánto el jueves?',['$7','$10','$8'],2,'La regla es sumar 2: 6 + 2 = 8.'],
+['1 mesa tiene 4 sillas, 2 mesas 8 sillas, 3 mesas 12 sillas. ¿Cuántas sillas en 4 mesas?',['16','14','15'],0,'Sumamos 4 cada vez: 12 + 4 = 16.'],
+['Una planta mide 10 cm, luego 15 cm, luego 20 cm. ¿Cuánto medirá después?',['30 cm','25 cm','21 cm'],1,'Crece 5 cada vez: 20 + 5 = 25 cm.'],
+['Cuento de 10 en 10: 10, 20, 30, 40, 50, ___ ¿Qué sigue?',['55','51','60'],2,'Sumamos 10: 50 + 10 = 60.'],
+['Collar: 🟡🟡🔴🟡🟡🔴🟡🟡 ___ ¿Qué cuenta sigue?',['🔴','🟡','🔵'],0,'El patrón es dos amarillas y una roja. Ya van dos amarillas, sigue 🔴.']]}];
+const C=['#0288d1','#00897b','#ef6c00','#8e24aa','#d81b60'];
+const S={name:'',sc:'name',t:0,i:0,first:true,score:0,done:{},sel:false};
+try{const x=JSON.parse(localStorage.getItem('m3')||'{}');if(x.name){S.name=x.name;S.done=x.done||{};S.sc='menu'}}catch(e){}
+const save=()=>{try{localStorage.setItem('m3',JSON.stringify({name:S.name,done:S.done}))}catch(e){}};
+const $=id=>document.getElementById(id),A=$('app');
+function go(sc,t){S.sc=sc;if(t!==undefined){S.t=t;S.i=0;S.score=0;S.first=true}draw()}
+function setName(){const v=$('nm').value.trim();if(!v){$('nm').focus();return}S.name=v;save();go('menu')}
+function topicBtn(k){const d=S.done[k];return `<button class="tp" style="background:${C[k]}" onclick="go('topic',${k})"><span>${T[k].ic} ${T[k].n}</span><small>${d!==undefined?'⭐ '+d+'/10':'⏱ '+T[k].min+' min'}</small></button>`}
+function draw(){A.style.setProperty('--pr',S.sc==='topic'?C[S.t]:'#7c4dff');
+if(S.sc==='name'){A.innerHTML=`<div class="center"><div class="big">🧮✨</div><h1>¡Hola, bienvenido!</h1><p>Vamos a repasar matemáticas para el examen. <br>¿Cómo te llamas?</p><input id="nm" maxlength="30" placeholder="Escribe tu nombre" onkeydown="if(event.key==='Enter')setName()"><p><button onclick="setName()">¡Empezar! 🚀</button></p></div>`;return}
+if(S.sc==='menu'){const all=[0,1,2,3,4].every(k=>S.done[k]!==undefined);
+A.innerHTML=`<div class="center"><div class="big">👋</div><h1>¡Hola, ${esc(S.name)}!</h1><p>Hoy repasaremos 5 temas. En cada tema: <b>aprendes</b> a la izquierda y <b>practicas</b> a la derecha (5 ejercicios y 5 problemas).</p>
+<div class="days"><div class="day"><h2>📅 Día 1 · 40 min</h2>${topicBtn(0)}${topicBtn(1)}</div><div class="day"><h2>📅 Día 2 · 40 min</h2>${topicBtn(2)}${topicBtn(3)}${topicBtn(4)}</div></div>
+<p>🏠 <b>¿En casa?</b> Entra a cualquier tema y repítelo las veces que quieras.</p>
+${all?`<button onclick="go('end')">🎓 Terminar repaso</button>`:'<small>Completa los 5 temas para recibir tu sorpresa 🎁</small>'}</div>`;return}
+if(S.sc==='end'){const st=Object.values(S.done).reduce((a,b)=>a+b,0);
+A.innerHTML=`<div class="center"><div class="big">🏆🎉🎓</div><h1>¡Felicitaciones, ${esc(S.name)}!</h1><p>¡Terminaste todo el repaso de matemáticas! Trabajaste muy duro. 👏</p><p class="big2">⭐ ${st} / 50 estrellas</p><p>Ahora estás listo(a) para el examen. ¡Tú puedes! 💪</p><button onclick="go('menu')">Volver al menú</button></div>`;return}
+const t=T[S.t];let r;
+if(S.i>=10){S.done[S.t]=Math.max(S.done[S.t]||0,S.score);save();const nx=S.t<4?S.t+1:null;
+r=`<div style="text-align:center"><div class="big">${S.score>=8?'🌟':'💪'}</div><h2>¡Terminaste ${t.n}!</h2><p class="big2">⭐ ${S.score} / 10</p><p>${S.score>=8?'¡Excelente trabajo!':'¡Buen intento! Repítelo para mejorar.'}</p><p><button class="alt" onclick="go('topic',${S.t})">🔁 Repetir</button> <button onclick="go('menu')">📋 Menú</button> ${nx!==null?`<button onclick="go('topic',${nx})">Siguiente ➡️</button>`:''}</p></div>`}
+else{const q=t.it[S.i];S.sel=false;
+r=`<div class="dots">${t.it.map((_,k)=>`<i class="${k<S.i?'st':k===S.i?'on':''}"></i>`).join('')}</div><span class="tag">${S.i<5?'Ejercicio '+(S.i+1)+' de 5':'Problema '+(S.i-4)+' de 5'}</span>${q[4]?`<div class="vis box">${q[4]}</div>`:''}<div class="q">${q[0]}</div>${q[1].map((o,k)=>`<button class="opt" id="o${k}" onclick="pick(${k})">${o}</button>`).join('')}<div id="fb"></div>`}
+A.innerHTML=`<header><b>${t.ic} ${t.n}</b><span>⏱ ${t.min} min · ${esc(S.name)}</span><button onclick="go('menu')">📋 Menú</button></header><div class="split"><div class="pan l"><h2>📖 Aprende</h2>${t.ex}</div><div class="pan"><h2>✏️ Practica</h2>${r}</div></div>`}
+function pick(k){if(S.sel)return;const q=T[S.t].it[S.i],b=$('o'+k),f=$('fb');
+if(k===q[2]){S.sel=true;if(S.first)S.score++;b.classList.add('ok');document.querySelectorAll('.opt').forEach(x=>x.disabled=true);f.innerHTML=`<div class="fb g">✅ <b>¡Muy bien!</b> ${q[3]}</div><p><button onclick="S.i++;S.first=true;draw()">${S.i<9?'Siguiente ➡️':'Ver resultado 🎉'}</button></p>`}
+else{S.first=false;b.classList.add('no');b.disabled=true;f.innerHTML=`<div class="fb">🤔 <b>Casi.</b> ${q[3]} <br>¡Inténtalo otra vez!</div>`}}
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+draw();
+</script></body></html>
